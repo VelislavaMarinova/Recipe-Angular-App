@@ -1,11 +1,28 @@
+import { EventEmitter } from "@angular/core";
 import { Recipe } from "./recipe.model";
+import { Ingredient } from "../shared/ingredient.model";
 
 export class RecipeService {
+    recipeSelected = new EventEmitter<Recipe>();
 
     //make it privete to not have access to data from outside;
     private recipes: Recipe[] = [
-        new Recipe('A Test Recipe', 'This is simply a test', 'https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg'),
-        new Recipe('AAAAAAAA recipe', 'This is simply a test', 'https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg')
+        new Recipe(
+            'Omlet',
+            'This is simply a test',
+            'https://www.supichka.com/files/images/2765/omlet_sas_sirene_1.jpg',
+             [
+                new Ingredient('eggs', 3),
+                new Ingredient('cheese', 100)
+            ]),
+        new Recipe(
+            'pizza',
+            'This is simply a test',
+            'https://static.toiimg.com/thumb/56933159.cms?imgsize=686279&width=800&height=800',
+            [
+                new Ingredient('flour', 3),
+                new Ingredient('tomatoes', 2)
+            ])
     ];
     //method to can get recipes from outside;
     getRecipes() {
